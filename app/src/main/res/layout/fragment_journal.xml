@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ebebd3"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:id="@+id/flFragmentJournal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UnknownIdInLayout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:id="@+id/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:background="#43caba">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="wrap_content"
+                android:layout_height="400dp"
+                android:src="@drawable/logo2" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/content_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="70dp">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#C2C59E">
+
+                    <TextView
+                        android:id="@+id/id_row1"
+                        android:layout_width="99dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="ID"
+                        android:textColor="#116063"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/date_row1"
+                        android:layout_width="194dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="Date"
+                        android:textColor="#116063"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/time_row1"
+                        android:layout_width="91dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="Time"
+                        android:textColor="#116063"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/id_row2"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="1"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/date_row2"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="08/02/2023"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/time_row2"
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="15:32"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#C2C59E">
+
+                    <EditText
+                        android:id="@+id/id_row3"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="2"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/date_row3"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="2"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="09/02/2023"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/time_row3"
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="01:43"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/id_row4"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="3"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/date_row4"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="08/02/2023"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/time_row4"
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="15:32"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#C2C59E">
+
+                    <EditText
+                        android:id="@+id/id_row5"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="4"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/date_row5"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="09/02/2023"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/time_row5"
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="01:43"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/id_row6"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="5"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/date_row6"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="08/02/2023"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/time_row6"
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="15:32"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#C2C59E">
+
+                    <EditText
+                        android:id="@+id/id_row7"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="6"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/date_row7"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="09/02/2023"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/time_row7"
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="01:43"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/id_row8"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="7"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/date_row8"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="08/02/2023"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/time_row8"
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="15:32"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#C2C59E">
+
+                    <EditText
+                        android:id="@+id/id_row9"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="8"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/date_row9"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="09/02/2023"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/time_row9"
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="01:43"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/id_row10"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="9"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/date_row10"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="08/02/2023"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/time_row10"
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="15:32"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#C2C59E">
+
+                    <EditText
+                        android:id="@+id/id_row11"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="10"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/date_row11"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="09/02/2023"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/time_row11"
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="01:43"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/id_row12"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="11"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/date_row12"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="08/02/2023"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/time_row12"
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="15:32"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#C2C59E">
+
+                    <EditText
+                        android:id="@+id/id_row13"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="12"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/date_row13"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="09/02/2023"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/time_row13"
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="01:43"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/id_row14"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="13"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/date_row14"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="08/02/2023"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/time_row14"
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="15:32"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#C2C59E">
+
+                    <EditText
+                        android:id="@+id/id_row15"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="15"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/date_row15"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="09/02/2023"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/time_row15"
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="01:43"
+                        android:textColor="#116063"
+                        android:textSize="24sp" />
+
+
+                </TableRow>
+
+            </TableLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
