@@ -2,20 +2,20 @@ package com.example.fallapplication3;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Context;
-import android.database.Cursor;
+import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +31,26 @@ public class MainActivity extends AppCompatActivity {
     HomeFragment homeFragment = new HomeFragment();
     JournalFragment journalFragment = new JournalFragment();
     SettingFragment settingFragment = new SettingFragment();
+    private static final int PERMISSION_REQUEST_CODE = 100;
+
+    private void requestPermissionsIfNeeded() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.BODY_SENSORS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE, Manifest.permission.BODY_SENSORS}, PERMISSION_REQUEST_CODE);
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                // Permissions granted, proceed with your app's functionality
+            } else {
+                // Permissions denied, show a message or gracefully handle the situation
+                Toast.makeText(this, "Permissions denied. The app might not work as expected.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
     @Override
     //Navigation Bar
@@ -70,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
+        requestPermissionsIfNeeded();
     }
     @Override
     protected void onResume() {
