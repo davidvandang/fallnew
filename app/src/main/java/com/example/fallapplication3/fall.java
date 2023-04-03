@@ -1,20 +1,28 @@
 package com.example.fallapplication3;
+
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
-import android.os.Bundle;
 import android.util.Log;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class fall extends AppCompatActivity implements SensorEventListener {
-
+public class fall implements SensorEventListener {
     private boolean isRecording = false;
     private int recordingCount = 0;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    private Sensor accelerometer;
+
+    public fall() {
+        this.accelerometer = accelerometer;
+    }
+
+    public void start() {
+        isRecording = false;
+        recordingCount = 0;
+    }
+
+    public void stop() {
+        isRecording = false;
+        recordingCount = 0;
     }
 
     @Override

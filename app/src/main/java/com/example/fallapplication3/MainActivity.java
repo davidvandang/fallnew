@@ -19,10 +19,12 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
 
+
     private SensorManager sensorManager;
     private Sensor accelerometer;
-    private fall fallDetector; // instantiate the fall class
+    private fall fallDetector;
 
+    private boolean isOnline = true;
 
 
     BottomNavigationView bottomNavigationView;
@@ -82,6 +84,20 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         // Unregister the accelerometer sensor listener to save battery
         sensorManager.unregisterListener(fallDetector);
+    }
+
+    public boolean isOnline() {
+        return isOnline;
+    }
+
+    public void startFallDetection() {
+        if (isOnline) {
+            fallDetector.start();
+        }
+    }
+
+    public void stopFallDetection() {
+        fallDetector.stop();
     }
 
 }
