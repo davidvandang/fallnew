@@ -19,13 +19,12 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    // Declare necessary variables and objects
     private SensorManager sensorManager;
     private Sensor accelerometer;
     private fall fallDetector;
 
     private boolean isOnline = true;
-
 
     BottomNavigationView bottomNavigationView;
     HomeFragment homeFragment = new HomeFragment();
@@ -33,12 +32,14 @@ public class MainActivity extends AppCompatActivity {
     SettingFragment settingFragment = new SettingFragment();
     private static final int PERMISSION_REQUEST_CODE = 100;
 
+    // Method to request necessary permissions if not already granted
     private void requestPermissionsIfNeeded() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(this, Manifest.permission.BODY_SENSORS) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.BODY_SENSORS) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE, Manifest.permission.BODY_SENSORS}, PERMISSION_REQUEST_CODE);
         }
     }
+
+    // Method to handle the result of the permission request
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -59,9 +60,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Initialize bottom navigation view
         bottomNavigationView = findViewById(R.id.bottomNavigationView2);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,homeFragment).commit();
+        // Set the home fragment as the default fragment
+        getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, homeFragment).commit();
 
         // Initialize sensor manager and accelerometer sensor
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -70,20 +73,21 @@ public class MainActivity extends AppCompatActivity {
         // Instantiate the fall class
         fallDetector = new fall();
 
+        // Set up the bottom navigation item selected listener
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.miHome:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,homeFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, homeFragment).commit();
                         return true;
 
                     case R.id.miJournal:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,journalFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, journalFragment).commit();
                         return true;
 
                     case R.id.miSetting:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,settingFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, settingFragment).commit();
                         return true;
 
                 }
@@ -92,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
         });
         requestPermissionsIfNeeded();
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -102,20 +107,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        // Unregister the accelerometer sensor listener to save battery
+        // Unregister the accelerometer sensor listener to save battery when the app is not in use
         sensorManager.unregisterListener(fallDetector);
     }
 
+    // Method to check if the device is online (connected to the internet)
     public boolean isOnline() {
         return isOnline;
     }
 
+    // Method to start fall detection when the device is online
     public void startFallDetection() {
         if (isOnline) {
             fallDetector.start();
         }
     }
 
+    // Method to stop fall detection
     public void stopFallDetection() {
         fallDetector.stop();
     }
