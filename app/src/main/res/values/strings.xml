@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">FallApplication3</string>
+
+    <string name="id_header">ID</string>
+    <string name="date_header">Date</string>
+    <string name="time_header">Time</string>
+
 </resources>

@@ -1,63 +1,83 @@
 package com.example.fallapplication3;
-
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link JournalFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.List;
+
 public class JournalFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public JournalFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment JournalFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static JournalFragment newInstance(String param1, String param2) {
-        JournalFragment fragment = new JournalFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private LinearLayout incidentsContainer;
+    private JournalDatabase journalDatabase;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_journal, container, false);
+
+        incidentsContainer = view.findViewById(R.id.incidents_container);
+        journalDatabase = new JournalDatabase(getActivity());
+
+        refreshIncidentsList();
+
+        return view;
+    }
+
+    private void refreshIncidentsList() {
+        incidentsContainer.removeAllViews();
+        List<Incident> incidents = journalDatabase.getAllIncidents();
+
+        for (int i = 0; i < incidents.size(); i++) {
+            Incident incident = incidents.get(i);
+            View incidentView = getLayoutInflater().inflate(R.layout.incident, incidentsContainer, false);
+
+            TextView idTextView = incidentView.findViewById(R.id.id_row);
+            TextView dateTextView = incidentView.findViewById(R.id.date_row);
+            TextView timeTextView = incidentView.findViewById(R.id.time_row);
+
+            idTextView.setText(String.valueOf(incident.getId()));
+            dateTextView.setText(incident.getDate());
+            timeTextView.setText(incident.getTime());
+
+            if (i % 2 == 0) {
+                incidentView.setBackgroundColor(Color.parseColor("#C2C59E"));
+            } else {
+                incidentView.setBackgroundColor(Color.parseColor("#EDEDED"));
+            }
+
+            incidentsContainer.addView(incidentView);
         }
     }
+    private void addIncidentToTable(Incident incident, boolean isHeader) {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View rowView = inflater.inflate(R.layout.incident, null);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_journal, container, false);
+        TextView idTextView = rowView.findViewById(R.id.id_row);
+        TextView dateTextView = rowView.findViewById(R.id.date_row);
+        TextView timeTextView = rowView.findViewById(R.id.time_row);
+
+        if (isHeader) {
+            idTextView.setText(R.string.id_header);
+            dateTextView.setText(R.string.date_header);
+            timeTextView.setText(R.string.time_header);
+        } else {
+            idTextView.setText(String.valueOf(incident.getId()));
+            dateTextView.setText(incident.getDate());
+            timeTextView.setText(incident.getTime());
+        }
+
+        // Set content descriptions
+        idTextView.setContentDescription(isHeader ? "ID header" : "ID: " + incident.getId());
+        dateTextView.setContentDescription(isHeader ? "Date header" : "Date: " + incident.getDate());
+        timeTextView.setContentDescription(isHeader ? "Time header" : "Time: " + incident.getTime());
+
+        incidentsContainer.addView(rowView);
     }
+
 }

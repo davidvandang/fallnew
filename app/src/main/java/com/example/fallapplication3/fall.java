@@ -1,59 +1,54 @@
 package com.example.fallapplication3;
 
+import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.util.Log;
 
 public class fall implements SensorEventListener {
-    private boolean isRecording = false;
-    private int recordingCount = 0;
+    private boolean isFallDetected = false;
+    private double previousAcceleration = 0;
+    private static final double ALPHA = 0.8;
+    private static final double FALL_THRESHOLD = 1;
 
-    private Sensor accelerometer;
+    private Context context;
 
-    public fall() {
-        this.accelerometer = accelerometer;
-    }
-
-    public void start() {
-        isRecording = false;
-        recordingCount = 0;
-    }
-
-    public void stop() {
-        isRecording = false;
-        recordingCount = 0;
+    public fall(Context context) {
+        this.context = context;
+        this.previousAcceleration = 0;
     }
 
     @Override
-    public void onSensorChanged(SensorEvent sensorEvent) {
-        if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-            float[] values = sensorEvent.values;
-            double x = values[0];
-            double y = values[1];
-            double z = values[2];
+    public void onSensorChanged(SensorEvent event) {
+        Log.i("FallDetection", "Sensor data received");
 
-            // Calculate the magnitude of the acceleration vector
-            double accelerationMagnitude = Math.sqrt(x * x + y * y + z * z);
+        float x = event.values[0];
+        float y = event.values[1];
+        float z = event.values[2];
 
-            // Check if the acceleration is less than 5.0 units
-            if (accelerationMagnitude < 5.0) {
-                // Start recording acceleration values
-                isRecording = true;
-                recordingCount = 0;
-            } else if (isRecording) {
-                // Check if the acceleration exceeds 16.5 units for a period of 45 samples
-                recordingCount++;
-                if (recordingCount >= 10 && accelerationMagnitude > 16.5) {
-                    // A fall has occurred
-                    Log.d("fall", "A fall has occurred");
-                    Log.d("FallDetection", "Acceleration Magnitude: " + accelerationMagnitude);
-                    isRecording = false;
-                    recordingCount = 0;
-                }
-            }
+        double acceleration = Math.sqrt(x * x + y * y + z * z);
+        Log.i("FallDetection", "Current acceleration: " + acceleration);
+
+        acceleration = acceleration * (1 - ALPHA) + previousAcceleration * ALPHA;
+        Log.i("FallDetection", "Filtered acceleration: " + acceleration);
+
+        double delta = Math.abs(acceleration - previousAcceleration);
+        Log.i("FallDetection", "Acceleration delta: " + delta);
+
+        if (delta > FALL_THRESHOLD && !isFallDetected) {
+            isFallDetected = true;
+            Log.i("FallDetection", "Fall detected");
+            FallDetectionService.getInstance().onFallDetected();
         }
+
+        previousAcceleration = acceleration;
     }
+
+    public void stopDetection() {
+        isFallDetected = false;
+    }
+
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
